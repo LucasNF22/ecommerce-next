@@ -6,7 +6,10 @@ const products = initialData.products;
 
 
 
+
 export default function Home() {
+
+  
   return (
     <>
       <Title 
