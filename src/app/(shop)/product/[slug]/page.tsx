@@ -1,8 +1,12 @@
-import { QuantitySelector, SizeSelector } from "@/components";
+
+import { QuantitySelector, SizeSelector, ProductSlideshow } from "@/components";
+
 import { titleFont } from "@/config/fonts";
 import { initialData } from "@/seed/seed";
-import Image from "next/image";
+
 import { notFound } from "next/navigation";
+
+
 
 interface Props {
   params: {
@@ -24,11 +28,9 @@ export default function ({ params }: Props ) {
 
       {/* SlideShow */}
       <div className="col-span-1 md:col-span-2">
-        <Image
-            src={`/products/${product.images[0]}`}
-            alt={product.title}
-            width={1000}
-            height={1000}
+        <ProductSlideshow
+          title={ product.title }
+          images={ product.images }
         />
       </div>
 
