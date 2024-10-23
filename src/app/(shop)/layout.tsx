@@ -5,12 +5,12 @@ export default function shopLayout({ children }: {
 
 }) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-50">
 
       <TopMenu />
       <SidebarMenu />
 
-      <div className="px-0 sm:px-10">
+      <div className="px-0 md:px-10">
         { children }
       </div>
 

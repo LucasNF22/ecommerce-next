@@ -15,7 +15,7 @@ export default function Home() {
       <Title 
         title="Tienda"
         subtitle="Todos los productos"
-        className="mb-2"
+        className="mb-2 px-5 md:px-0"
       />
 
       <ProductGrid 
