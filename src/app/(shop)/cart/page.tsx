@@ -19,22 +19,21 @@ export default function () {
       <div className="flex flex-col w-[1000px]">
 
         <Title title='Carrito' />
+        
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
 
           {/* Carrito */}
-          <div className="flex flex-col mt-5">
-            <span >Agrega más items</span>
-            <Link href={'/'} className="underline mb-5">
-              Continuar comprando
-            </Link>
+          <div className="flex flex-col ">
+            
+            
 
 
             {/* Items */}
             {
               productsInCart.map(product => (
 
-                <div className="flex mb-5" key={product.slug}>
+                <div className="flex mb-5 border rounded-md" key={product.slug}>
 
                   
                     <Image
@@ -50,9 +49,9 @@ export default function () {
                     />
                   
 
-                  <div>
+                  <div className="flex flex-col justify-center items-start">
                     <p>{product.title}</p>
-                    <p>{product.price}</p>
+                    <p>${product.price}</p>
 
                     <QuantitySelector quantity={3} />
 
@@ -68,7 +67,11 @@ export default function () {
 
               ))
             }
+            <Link href={'/'} className="bg-slate-400 p-2 rounded-md  text-white flex justify-center items-center text-center mb-5">
+              Continuar comprando
+            </Link>
           </div>
+          
 
           {/* Checkout Resumen de orden */}
           <div className="bg-white rounded-xl shadow-xl p-7 h-fit ">
