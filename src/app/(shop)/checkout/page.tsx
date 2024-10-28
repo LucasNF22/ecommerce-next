@@ -47,7 +47,7 @@ export default function () {
                       className="mr-5 rounded"
                     />
   
-                  <div className="flex flex-col justify-center items-start">
+                  <div className="flex flex-col justify-start pt-5 items-start">
                     <p>{product.title}</p>
                     <p>${product.price} x 3 </p>
                     <p className="font-bold">Subtotal: ${product.price * 3}</p>

@@ -24,7 +24,7 @@ export default function ({ params }: Props ) {
   }
 
   return (
-    <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3 ">
+    <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3 md:max-w-[1400px] justify-self-center">
 
       {/* SlideShow */}
       <div className="col-span-1 md:col-span-2">
@@ -33,7 +33,7 @@ export default function ({ params }: Props ) {
         <ProductMobileSlideshow 
           title={ product.title }
           images={ product.images }
-          className="block md:hidden"
+          className="block md:hidden "
         />
         
         {/* Desktop SlideShow */}
