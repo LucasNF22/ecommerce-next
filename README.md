@@ -8,7 +8,8 @@
 2. Crear copia del archivo ``env.template`` y renombrarlo a ``.env`` y cambiar las variables de entorno
 3. Instalar dependencias ``npm install``
 4. Levantar la base de datos ``docker compose up -d``
-5. Correr el proyecto ``npm run dev``
+5. Correr las migraciones de prisma ``npx prisma migrate dev``
+6. Correr el proyecto ``npm run dev``
 
 
 ## Correr proecto en Producción
