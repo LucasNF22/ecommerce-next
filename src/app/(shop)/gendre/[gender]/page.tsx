@@ -1,7 +1,7 @@
 import { ProductGrid, Title } from "@/components";
 import { Validcategory } from "@/interfaces";
 import { initialData,  } from "@/seed/seed";
-import { notFound } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 
 const products = initialData.products;
 
@@ -13,10 +13,14 @@ interface Props {
 }
 
 export default function ({ params }: Props ) {
+  
+
+  const searchParams = useSearchParams();
+  const gender = searchParams.get('gender');
 
   const { id } = params;
   const filteredProducts = products.filter( products => 
-     products.gender == id 
+     products.gender == gender
   )
 
   const genderLabels: Record<Validcategory, string> = { //Record es para especificar el tipo de un objeto. Primer argunmento es la key, y el segundo el tipo.
