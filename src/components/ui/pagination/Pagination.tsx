@@ -24,12 +24,15 @@ export const Pagination = ({ totalPages }: Props) => {
 
     const currentPage = isNaN( +pageString ) ? 1 : +pageString;
     
-     if( currentPage < 1 || isNaN( +pageString )){
+    
+    if( currentPage < 1 || isNaN( +pageString )){
         redirect( pathname )
-     }
-
+    }
+    
     const allPages = generatePaginationNumbers( currentPage, totalPages );
     
+    console.log(currentPage);
+    console.log(pageString);
    
 
     const createPageUrl = ( pageNumber: number | string ) => {
@@ -74,14 +77,14 @@ export const Pagination = ({ totalPages }: Props) => {
 
                     {
                         allPages.map( ( page, index ) => (
-                            
+                                                        
                             <li key={page + "-" + index} className="page-item">
                                 <Link
                                     className={
                                         clsx(
-                                            "page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none",
+                                            "page-link relative block py-1.5 px-3 rounded border-0  outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none",
                                             {
-                                                'bg-blue-500 shadow-md text-white hover:text-white hover:bg-blue-700': page === currentPage
+                                                'bg-blue-500 shadow-md text-white hover:text-white hover:bg-blue-600': page === currentPage
                                             }
                                         )
                                     }
