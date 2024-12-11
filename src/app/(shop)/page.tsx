@@ -1,6 +1,7 @@
+export const revalidete = 60 // segundos
+
 import { getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductGrid, Title } from "@/components";
-import { initialData } from "@/seed/seed";
 import { redirect } from "next/navigation";
 
 
