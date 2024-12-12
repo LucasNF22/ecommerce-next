@@ -5,7 +5,7 @@ import Link from "next/link"
 
 
 import { titleFont } from "@/config/fonts"
-import { IoCartOutline, IoHomeOutline, IoMenuOutline, IoSearchOutline } from "react-icons/io5"
+import { IoCartOutline, IoMenuOutline, IoSearchOutline } from "react-icons/io5"
 import { useUiStore } from "@/store";
 
 

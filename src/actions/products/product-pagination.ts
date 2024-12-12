@@ -65,7 +65,10 @@ export const getPaginatedProductsWithImages = async({
         
 
     } catch (error) {
+        console.log(error)
         throw new Error('No se pudo cargar los productos')
+        
+        
     }
 
 

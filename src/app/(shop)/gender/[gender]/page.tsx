@@ -7,23 +7,21 @@ import { redirect } from "next/navigation";
 
 
 interface Props {
-  params: {
-    gender: string,
-  },
+  params: Promise<{ gender: string }>,
   searchParams: {
     page?: string
   }
   
 }
 
-export default async function ({ params, searchParams }: Props ) {
+export default async function GenderPage({ params, searchParams }: Props ) {
   
 
-  const { gender } = params;
+  const { gender } = await params;
 
   const page = searchParams.page ? parseInt(searchParams.page) : 1
 
-  const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ 
+  const { products, totalPages } = await getPaginatedProductsWithImages({ 
     page, 
     gender: gender as Gender
    });
@@ -51,13 +49,13 @@ export default async function ({ params, searchParams }: Props ) {
   return (
     <>
       <Title 
-        title={`Articulos ${ (genderLabels as any)[gender]}` } // Arreglar tema de tipos de datos
+        title={`Articulos ${ (genderLabels )[gender]}` } // Arreglar tema de tipos de datos
         subtitle="Todos los productos"
         className="mb-2 "
       />
 
       <ProductGrid   
-        products={ products }
+        products = { products }
       />
 
       <Pagination  totalPages={totalPages}/>

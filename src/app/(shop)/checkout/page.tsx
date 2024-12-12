@@ -1,4 +1,4 @@
-import { QuantitySelector, Title } from "@/components";
+import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ const productsInCart = [
 
 
 
-export default function () {
+export default function CheckoutPage() {
   return (
     <div className="flex justify-center items-center mb72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
@@ -107,7 +107,7 @@ export default function () {
               {/* Disclaimer */}
               <p className="mb-5">
                 <span className="text-xs mb-5">
-                  Al hacer click en "Continuar", está aceptando nuestros <a href="#" className="underline">términos y condiciones</a> y <a href="#" className="underline">política de privacidad</a>
+                  Al hacer click en &quotContinuar&quot, está aceptando nuestros <a href="#" className="underline">términos y condiciones</a> y <a href="#" className="underline">política de privacidad</a>
                 </span>
               </p>
 
