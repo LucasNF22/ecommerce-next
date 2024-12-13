@@ -1,10 +1,13 @@
-
-import { QuantitySelector, SizeSelector, ProductSlideshow, ProductMobileSlideshow } from "@/components";
-
-import { titleFont } from "@/config/fonts";
-import { initialData } from "@/seed/seed";
+export const revalidate = 604.800 // 7 días en segundos
 
 import { notFound } from "next/navigation";
+
+import { titleFont } from "@/config/fonts";
+
+import { QuantitySelector, SizeSelector, ProductSlideshow, ProductMobileSlideshow, StockLabel } from "@/components";
+
+import { getProductBySlug } from "@/actions";
+
 
 
 
@@ -14,10 +17,12 @@ interface Props {
   }
 }
 
-export default function ProductSlugPage({ params }: Props ) {
+export default async function ProductSlugPage({ params }: Props ) {
 
   const { slug } = params;
-  const product = initialData.products.find( product => product.slug === slug)
+  const product = await getProductBySlug(slug);
+  console.log(product);
+  
 
   if( !product ){
     notFound()
@@ -48,6 +53,7 @@ export default function ProductSlugPage({ params }: Props ) {
 
       {/*  Detalles */}
       <div className="col-span-1 px-5 ">
+
         
         <h1 className={`${ titleFont} antialiased font-bold text-xl`}>
           { product.title }
@@ -60,6 +66,7 @@ export default function ProductSlugPage({ params }: Props ) {
           selectedSize={ product.sizes[0] }
         />
 
+        <StockLabel slug={slug} />
 
         {/* Selector de cantidad */}
         <QuantitySelector quantity={1}/>

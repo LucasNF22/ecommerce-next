@@ -30,10 +30,7 @@ export const Pagination = ({ totalPages }: Props) => {
     }
     
     const allPages = generatePaginationNumbers( currentPage, totalPages );
-    
-    console.log(currentPage);
-    console.log(pageString);
-   
+      
 
     const createPageUrl = ( pageNumber: number | string ) => {
 

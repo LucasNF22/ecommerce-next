@@ -1,4 +1,3 @@
-import { Category } from "@prisma/client";
 
 export interface Product {
 
@@ -11,8 +10,8 @@ export interface Product {
     slug: string;
     tags: string[];
     title: string;
-    type: ValidType;
-    gender: Category;
+    //type: ValidType;
+    gender: Validcategory;
 }
 
 export type Validcategory = 'men'|'women'|'kid'|'unisex';

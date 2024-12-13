@@ -8,7 +8,10 @@ export * from './ui/footer/Footer'
 export * from './ui/pagination/Pagination'
 
 export * from './product/size-selector/SizeSelector';
+
 export * from './product/quantity-selector/QuantitySelector'
+
+export * from './product/stock-label/StockLabel'
 
 export * from './product/product-slideshow/ProductSlideshow'
 export * from './product/product-slideshow/ProductMobileSlideshow'

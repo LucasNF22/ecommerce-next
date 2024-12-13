@@ -56,9 +56,9 @@ export const getPaginatedProductsWithImages = async({
         return {
             currentPage: page,
             totalPages: totalPages,
-            products: products.map( product => ({
+            products: products.map( (product) => ({
                 ...product,
-                images: product.ProductImage.map( image => image.url )
+                images: product.ProductImage.map( (image) => image.url )
             }))
             
         }
