@@ -21,7 +21,7 @@ export default async function ProductSlugPage({ params }: Props ) {
 
   const { slug } = params;
   const product = await getProductBySlug(slug);
-  console.log(product);
+
   
 
   if( !product ){

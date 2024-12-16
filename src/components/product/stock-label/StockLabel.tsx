@@ -1,7 +1,9 @@
 'use client'
 
+import { getStockBySlug } from "@/actions"
 import { titleFont } from "@/config/fonts"
-import prisma from "@/lib/prisma"
+import { useEffect, useState } from "react"
+
 
 
 interface Props {
@@ -10,14 +12,35 @@ interface Props {
 
 
 export const StockLabel = ({ slug }:Props) => {
+    
+    const [stock, setStock] = useState(0);
+    const [isLoading, setIsLoading] = useState(true)
 
-    // const product = prisma.product.findFirst(where:{ slug: slug})
+    useEffect(()=> {
+        getStock()
+    },[])
+
+    const getStock = async()=> {
+        const inStock = await getStockBySlug(slug)
+        setStock(inStock)
+        setIsLoading(false)
+    }
 
 
     return (
-        <h1 className={`${titleFont} antialiased font-bold text-sm`}>
-            Stock: 150
-        </h1>
+        <>
+        {
+            isLoading 
+            ?
+            (<h1 className={`${titleFont} antialiased font-bold text-sm bg-slate-300 animate-pulse max-w-20 mb-5`}>
+                &nbsp;
+            </h1>)
+            :
+            (<h1 className={`${titleFont} antialiased font-bold text-sm mb-3`}>
+                Stock: { stock }
+            </h1>)
+        }
+        </>
     )
 }
 
