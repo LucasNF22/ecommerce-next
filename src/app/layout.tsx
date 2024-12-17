@@ -4,7 +4,10 @@ import { inter } from "@/config/fonts";
 
 
 export const metadata: Metadata = {
-  title: "Ecommerce | NEXT",
+  title: {
+    template: '%s - Ecommerce | NEXT',
+    default: 'Home - Ecommerce | NEXT'
+  },
   description: "Tienda de productos",
 };
 
