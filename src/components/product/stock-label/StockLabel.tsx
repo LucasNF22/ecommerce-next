@@ -32,7 +32,7 @@ export const StockLabel = ({ slug }:Props) => {
         {
             isLoading 
             ?
-            (<h1 className={`${titleFont} antialiased font-bold text-sm bg-slate-300 animate-pulse max-w-20 mb-5`}>
+            (<h1 className={`${titleFont} antialiased font-bold text-sm bg-slate-300 animate-pulse max-w-20 mb-3`}>
                 &nbsp;
             </h1>)
             :
