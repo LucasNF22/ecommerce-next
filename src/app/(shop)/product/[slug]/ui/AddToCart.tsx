@@ -13,8 +13,12 @@ interface Props {
 
 export const AddToCart = ({product}:Props) => {
 
-    const [size, setSize] = useState<ValidSize|undefined>()
+    const [size, setSize] = useState<ValidSize|undefined>();
+    const [quantity, setQuantity] = useState<number>(1);
 
+    const addToCart = () => {
+        console.log(size, quantity)
+    }
 
 
     return (
@@ -30,9 +34,16 @@ export const AddToCart = ({product}:Props) => {
             <StockLabel slug={product.slug} />
 
             {/* Selector de cantidad */}
-            <QuantitySelector quantity={1} />
+            <QuantitySelector 
+                quantity={quantity} 
+                onQuantityChange={ setQuantity }
+            />
+            
             {/* Boton */}
-            <button className="btn-primary my-5">
+            <button 
+                className="btn-primary my-5"
+                onClick={ addToCart }
+            >
                 Agregar al carrito
             </button>
         </>
