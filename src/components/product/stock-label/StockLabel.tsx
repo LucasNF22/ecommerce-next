@@ -37,7 +37,7 @@ export const StockLabel = ({ slug }:Props) => {
             </h1>)
             :
             (<h1 className={`${titleFont} antialiased font-bold text-sm mb-3`}>
-                Stock: { stock }
+                Stock: { stock } disponibles
             </h1>)
         }
         </>
