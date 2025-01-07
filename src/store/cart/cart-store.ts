@@ -3,51 +3,57 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface State {
-    cart: CartProduct[];
+  cart: CartProduct[];
 
-    //!TODO
+  getTotalItems: () => number;
 
-    addProductToCart: (product: CartProduct) => void;
-    // updateProductQuantity
-    // removeProduct
-
-};
+  addProductToCart: (product: CartProduct) => void;
+  // updateProductQuantity
+  // removeProduct
+}
 
 export const useCartStore = create<State>()(
 
-   
-    ( set, get ) => ({
-        cart: [],
-        
-        
+  persist(
 
-        //Methods
+    (set, get) => ({
+      cart: [],
 
-        addProductToCart: ( product: CartProduct ) => {
-            const { cart } = get();
-            console.log(cart);
+      //Methods
 
-            //1. Revisar si el producto existe en el carrito con la talla seleccionada
-            const productInCart = cart.some(
-                (item) => ( item.id === product.id && item.size === product.size )
-            );
+      getTotalItems: () => {
+        const { cart } = get()
+        return cart.reduce( ( total, item ) => total + item.quantity , 0 )
+      },
 
-            if( !productInCart ){
-                set({ cart: [ ...cart, product ] });
-                return;
-            }
+      addProductToCart: (product: CartProduct) => {
+        const { cart } = get();
+        console.log(cart);
 
-            //2. Se que el producto existe por talle, lo tengo que incrementar
-            const updatedCartProducts = cart.map( (item) => {
-                if( item.id === product.id && item.size === product.size ){
-                    return{ ...item, quantity: item.quantity + product.quantity }
-                }
-                return item
-            })
+        //1. Revisar si el producto existe en el carrito con la talla seleccionada
+        const productInCart = cart.some(
+          (item) => item.id === product.id && item.size === product.size
+        );
 
-            set({ cart: updatedCartProducts })
-
-
+        if (!productInCart) {
+          set({ cart: [...cart, product] });
+          return;
         }
-    })
-)
+
+        //2. Se que el producto existe por talle, lo tengo que incrementar
+        const updatedCartProducts = cart.map((item) => {
+          if (item.id === product.id && item.size === product.size) {
+            return { ...item, quantity: item.quantity + product.quantity };
+          }
+          return item;
+        });
+
+        set({ cart: updatedCartProducts });
+      },
+    }),
+
+    {
+      name: "shopping-cart",
+    }
+  )
+);
