@@ -9,8 +9,9 @@ import { useEffect, useState } from "react"
 
 export const ProductsInCart = () => {
 
+    const updateProductQuantity = useCartStore( state => state.updateProductQuantity );
     const [loaded, setLoaded] = useState(false);
-    const productsInCart = useCartStore( state => state.cart )
+    const productsInCart = useCartStore( state => state.cart );
 
     useEffect(() => {
       setLoaded(true)
@@ -55,8 +56,8 @@ export const ProductsInCart = () => {
                             <p>${product.price}</p>
 
                             <QuantitySelector 
-                                quantity={3} 
-                                onQuantityChange={ value => console.log( value ) }
+                                onQuantityChange={ quantity => updateProductQuantity(product, quantity) }
+                                quantity={product.quantity} 
                             />
 
                             <button className="underline mt-3">
