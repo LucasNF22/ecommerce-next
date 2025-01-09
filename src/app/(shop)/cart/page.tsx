@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ProductsInCart, Title } from "@/components";
+import { OrderSumary, ProductsInCart, Title } from "@/components";
 
 import { redirect } from "next/navigation";
 
@@ -39,21 +39,7 @@ export default function CartPage() {
           <div className="bg-white rounded-xl shadow-xl p-7 h-fit ">
             <h2 className="text-2xl mb-2">Resumen de orden</h2>
 
-            <div className="grid grid-cols-2">
-
-              <span>Nro.productos</span>
-              <span className="text-right">3 artículos</span>
-
-              <span>Subtotal</span>
-              <span className="text-right">$100</span>
-
-              <span>Impuestos (%21)</span>
-              <span className="text-right">$21</span>
-
-              <span className="text-2xl mt-5">Total</span>
-              <span className="text-2xl mt-5 text-right">$121</span>
-
-            </div>
+            <OrderSumary />
 
             <div className="mt-5 mb-2 w-full">
               <Link
