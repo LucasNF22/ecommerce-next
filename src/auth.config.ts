@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
+import prisma from "./lib/prisma";
+import bcryptjs from 'bcryptjs';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
@@ -21,14 +23,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           const { email, password } = parsedCredentials.data;
 
+          console.log('authConfig:');
           console.log({email, password});
           
 
         //buscar el correo
+        const user = await prisma.user.findUnique({ where: { email: email.toLowerCase() }})
+        if( !user ) return null;
 
         //Comparar las contraseñas
+        if( !bcryptjs.compareSync( password, user.password) ) return null
 
-        return null;
+        //Devolver el usuario
+        const { password: _, ...rest }= user
+        console.log({rest});
+        
+        return rest;
       },
     }),
   ],
