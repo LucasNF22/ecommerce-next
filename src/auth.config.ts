@@ -22,10 +22,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if( !parsedCredentials.success )return null;
 
           const { email, password } = parsedCredentials.data;
-
-          console.log('authConfig:');
-          console.log({email, password});
-          
+         
 
         //buscar el correo
         const user = await prisma.user.findUnique({ where: { email: email.toLowerCase() }})

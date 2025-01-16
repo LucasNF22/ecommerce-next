@@ -4,12 +4,24 @@ import Link from "next/link"
 import { useFormState, useFormStatus } from "react-dom"
 import { authenticate } from "@/actions"
 import { IoInformationOutline } from "react-icons/io5"
+import clsx from "clsx"
+import { useEffect } from "react"
 
 export const LoginForm = () => {
 
     const [ state, dispatch ] = useFormState( authenticate, undefined );
 
-    console.log({state})
+    console.log(state)
+
+    useEffect(() => {
+        if ( state === 'success' ) {
+          // redireccionar
+          // router.replace('/');
+          window.location.replace('/');
+        }
+    
+      },[state]);
+    
 
 
     return (
@@ -64,7 +76,12 @@ function LoginButton() {
     return (
         <button
         type="submit"
-        className="btn-primary">
+        className={ clsx({
+            "btn-primary": !pending,
+            "btn-disabled": pending
+        })}
+        disabled={pending}
+        >
         Ingresar
         </button>
 

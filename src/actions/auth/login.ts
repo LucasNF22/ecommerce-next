@@ -8,8 +8,8 @@ export async function authenticate(
     formData: FormData,
 ){
     try {
-        await sleep(2)
-        await signIn('credentials', Object.fromEntries(formData));
+        await signIn('credentials', {...Object.fromEntries(formData), redirect:false});
+        return 'success'
 
     } catch (error) {
         // if((error as Error).message.includes('credentials')){
