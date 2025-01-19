@@ -11,10 +11,8 @@ export const LoginForm = () => {
 
     const [ state, dispatch ] = useFormState( authenticate, undefined );
 
-    console.log(state)
-
     useEffect(() => {
-        if ( state === 'success' ) {
+        if ( state === 'Success' ) {
           // redireccionar
           // router.replace('/');
           window.location.replace('/');
@@ -22,7 +20,6 @@ export const LoginForm = () => {
     
       },[state]);
     
-
 
     return (
         <form action={dispatch} className="flex flex-col">
@@ -42,7 +39,7 @@ export const LoginForm = () => {
                 name="password"
             />
 
-            { state === "credentialsSignin" && (
+            { state === "CredentialsSignin" && (
                 <div className="mb-2 flex flex-row ">
                     <IoInformationOutline className="h-5 w-5 text-red-500" />
                     <p className="text-sm text-red-500">Los datos ingresados no son correctos</p>

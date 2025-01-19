@@ -1,19 +1,26 @@
-'use server'
+"use server";
 
-import { signIn } from '@/auth.config'
-import { sleep } from '@/utils';
+import { signIn } from "@/auth.config";
+
 
 export async function authenticate(
-    prevState: string | undefined,
-    formData: FormData,
-){
-    try {
-        await signIn('credentials', {...Object.fromEntries(formData), redirect:false});
-        return 'success'
+  prevState: string | undefined,
+  formData: FormData
+) {
+  try {
+    await signIn("credentials", {
+      ...Object.fromEntries(formData),
+      redirect: false,
+    });
 
-    } catch (error) {
-        // if((error as Error).message.includes('credentials')){
-        // }
-        return 'credentialsSignin'
+    return "Success";
+
+  } catch (error) { 
+
+    if ( (error as any).type === "CredentialsSignin") {
+      return "CredentialsSignin";
     }
+
+    return "Error desconocido";
+  }
 }
