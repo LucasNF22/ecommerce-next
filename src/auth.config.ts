@@ -9,6 +9,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/auth/login",
     newUser: "/auth/new-account",
   },
+  callbacks: {
+    jwt({ token, user }) {
+      if( user ){
+        token.data = user
+      }
+      
+      return token
+    },
+    session({ session, token, user }){
+      // console.log( {session, token, user})
+      session.user = token.data as any;
+      
+      return session
+    }
+  },
   providers: [
     //proveedores
 
@@ -33,8 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         //Devolver el usuario
         const { password: _, ...rest }= user
-        console.log({rest});
-        
+             
         return rest;
       },
     }),
