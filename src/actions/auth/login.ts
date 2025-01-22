@@ -24,3 +24,15 @@ export async function authenticate(
     return "Error desconocido";
   }
 }
+
+
+export const Login = async(email: string, password: string) => {
+
+  try {
+    await signIn('credentials', { email, password });
+
+
+  } catch (error) {
+    console.log(error)
+  }
+}
