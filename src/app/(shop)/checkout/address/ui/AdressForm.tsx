@@ -1,8 +1,9 @@
 'use client'
 
 import clsx from "clsx";
-import Link from "next/link"
 import { useForm } from "react-hook-form"
+
+import type { Country } from "@/interfaces";
 
 interface FormInputs {
 
@@ -17,29 +18,32 @@ interface FormInputs {
     rememberAddress: string;
 
 };
+interface Props {
+    countries: Country[];
+}
 
 
 
 
-export const AdressForm = () => {
+export const AdressForm = ({ countries }: Props) => {
 
     const { handleSubmit, register, formState: { isValid } } = useForm<FormInputs>({
-        defaultValues:{
+        defaultValues: {
             // Leer valroes de la base de datos
         }
     });
-    
-    const onSubmit = ( data: FormInputs ) => {
-        console.log({data});
-        
+
+    const onSubmit = (data: FormInputs) => {
+        console.log({ data });
+
     }
 
 
 
     return (
         <>
-            <form 
-                onSubmit={ handleSubmit( onSubmit )}
+            <form
+                onSubmit={handleSubmit(onSubmit)}
                 className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
 
                 <div className="flex flex-col mb-2">
@@ -47,7 +51,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('firstName', { required: true })}
+                        {...register('firstName', { required: true })}
                     />
                 </div>
 
@@ -56,7 +60,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('lastName', { required: true })}
+                        {...register('lastName', { required: true })}
                     />
                 </div>
 
@@ -65,7 +69,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('address', { required: true })}
+                        {...register('address', { required: true })}
                     />
                 </div>
 
@@ -74,7 +78,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('address2')}
+                        {...register('address2')}
                     />
                 </div>
 
@@ -84,7 +88,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('postalCode', { required: true })}
+                        {...register('postalCode', { required: true })}
                     />
                 </div>
 
@@ -93,7 +97,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('city', { required: true })}
+                        {...register('city', { required: true })}
                     />
                 </div>
 
@@ -101,10 +105,15 @@ export const AdressForm = () => {
                     <span>País</span>
                     <select
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('country', { required: true })}
+                        {...register('country', { required: true })}
                     >
                         <option value="">[ Seleccione ]</option>
-                        <option value="CRI">Costa Rica</option>
+                        {
+                            countries.map( country => (
+                                <option key={ country.id } value={ country.id }>{ country.name }</option>
+                            ))
+                        }
+
                     </select>
                 </div>
 
@@ -113,7 +122,7 @@ export const AdressForm = () => {
                     <input
                         type="text"
                         className="p-2 border rounded-md bg-gray-200"
-                        { ...register('phone', { required: true })}
+                        {...register('phone', { required: true })}
                     />
                 </div>
 
@@ -130,8 +139,8 @@ export const AdressForm = () => {
                                 type="checkbox"
                                 className="border-gray-500 before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-blue-500 checked:bg-blue-500 checked:before:bg-blue-500 hover:before:opacity-10"
                                 id="checkbox"
-                                { ...register('rememberAddress')}
-                                // checked
+                                {...register('rememberAddress')}
+                            // checked
                             />
                             <div className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
                                 <svg
@@ -156,11 +165,11 @@ export const AdressForm = () => {
                     <button
                         // href='/checkout'
                         type="submit"
-                        disabled= { !isValid }
-                        className={ clsx({
-                                'btn-primary': isValid,
-                                'btn-disabled': !isValid
-                            },"flex w-full sm:w-1/2 justify-center " )
+                        disabled={!isValid}
+                        className={clsx({
+                            'btn-primary': isValid,
+                            'btn-disabled': !isValid
+                        }, "flex w-full sm:w-1/2 justify-center ")
                         }>
                         Siguiente
                     </button>
