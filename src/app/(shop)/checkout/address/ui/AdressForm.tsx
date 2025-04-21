@@ -48,6 +48,14 @@ export const AdressForm = ({ countries }: Props) => {
         console.log({ data });
 
         setAddress(data)
+        const { rememberAddress, ...restAddress} = data;
+
+        if( rememberAddress ){
+            // TODO: server action
+            setUserAddress(restAddress, 'userId')
+        } else {
+            // Todo: server action
+        }
 
     }
 
