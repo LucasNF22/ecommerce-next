@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form"
 import type { Country } from "@/interfaces";
 import { useAddressStore } from "@/store/address/address-store";
 import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { setUserAddress } from "@/actions";
+
+
 
 interface FormInputs {
 
@@ -35,8 +39,16 @@ export const AdressForm = ({ countries }: Props) => {
         }
     });
 
+    const { data: session} = useSession({
+        required:true // si la persona no esta autenticada lo amnda al loguin forzadamente.
+    });
+    
     const setAddress = useAddressStore( state => state.setAddress );
-    const address = useAddressStore( state => state.address)
+    const address = useAddressStore( state => state.address);
+
+    
+
+
 
     useEffect(() => {
         if( address.firstName ){
@@ -44,15 +56,19 @@ export const AdressForm = ({ countries }: Props) => {
         }
     },[address])
 
+
+
+
     const onSubmit = (data: FormInputs) => {
-        console.log({ data });
+        
+        
 
         setAddress(data)
         const { rememberAddress, ...restAddress} = data;
 
         if( rememberAddress ){
             // TODO: server action
-            setUserAddress(restAddress, 'userId')
+            setUserAddress( restAddress, session!.user.id) 
         } else {
             // Todo: server action
         }
