@@ -3,11 +3,11 @@
 import clsx from "clsx";
 import { useForm } from "react-hook-form"
 
-import type { Country } from "@/interfaces";
+import type { Address, Country } from "@/interfaces";
 import { useAddressStore } from "@/store/address/address-store";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { setUserAddress } from "@/actions";
+import { deleteUserAddress, setUserAddress } from "@/actions";
 
 
 
@@ -21,21 +21,23 @@ interface FormInputs {
     city: string;
     country: string;
     phone: string;
-    rememberAddress: string;
+    rememberAddress: boolean;
 
 };
 interface Props {
     countries: Country[];
+    userStoredAddress?: Partial<Address>; // el Partial declara como opcionales todas las propiedades del address
 }
 
 
 
 
-export const AdressForm = ({ countries }: Props) => {
+export const AdressForm = ({ countries, userStoredAddress = {} }: Props) => {
 
     const { handleSubmit, register, formState: { isValid }, reset } = useForm<FormInputs>({
         defaultValues: {
-            // Leer valroes de la base de datos
+            ...( userStoredAddress as any ),
+            rememberAddress: false,
         }
     });
 
@@ -71,6 +73,7 @@ export const AdressForm = ({ countries }: Props) => {
             setUserAddress( restAddress, session!.user.id) 
         } else {
             // Todo: server action
+            deleteUserAddress(session!.user.id)
         }
 
     }

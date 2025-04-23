@@ -10,11 +10,13 @@ export * from './country/getCountries'
 import { getProductBySlug } from './products/get-product-by-slug';
 
 import { setUserAddress } from './address/set-user-address';
+import { deleteUserAddress } from './address/delete-user-address';
+import { getUserAddress } from './address/get-user-address';
 
 import { getStockBySlug } from './products/get-stock-by-slug';
 
 import { getPaginatedProductsWithImages } from './products/product-pagination';
 
-export { getPaginatedProductsWithImages, getProductBySlug, getStockBySlug, authenticate, logout, registerUser, login, setUserAddress };
+export { getPaginatedProductsWithImages, getProductBySlug, getStockBySlug, authenticate, logout, registerUser, login, setUserAddress, deleteUserAddress, getUserAddress };
 
 
