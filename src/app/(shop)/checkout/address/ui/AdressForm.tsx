@@ -22,6 +22,7 @@ interface FormInputs {
     country: string;
     phone: string;
     rememberAddress: boolean;
+    
 
 };
 interface Props {
