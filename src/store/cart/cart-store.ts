@@ -1,7 +1,7 @@
 import { CartProduct } from "@/interfaces";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from '../../interfaces/product.interface';
+
 
 interface State {
   cart: CartProduct[];
